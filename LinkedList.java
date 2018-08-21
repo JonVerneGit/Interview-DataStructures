@@ -14,4 +14,10 @@ import java.util.NoSuchElementException;
  * @param <E>
  */
 
-public class LinkedList<E> implements ListI<E> {}
+public class LinkedList<E> implements ListI<E> {
+
+  private static int currentSize;
+	private Node<E> head;
+	private Node<E> tail;
+	
+}
