@@ -20,6 +20,25 @@ public class LinkedList<E> implements ListI<E> {
 	private Node<E> head;
 	private Node<E> tail;
 	
+	/**
+	 * Adds an object to the beginning of the list.
+	 * @param obj the object to be added to the list.
+	 */
+	@Override
+	public void addFirst(E obj) {
+		
+		if (head == null){
+			head = tail = new Node<E>(obj);
+			currentSize++;
+			return;
+		}
+		
+		Node<E> tmpNode = new Node<E>(obj);
+		tmpNode.setNext(head);
+		head = tmpNode;
+		currentSize++;
+	}
+	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
 	 * objects along with generic type data.
