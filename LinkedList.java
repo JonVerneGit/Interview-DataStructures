@@ -16,8 +16,43 @@ import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements ListI<E> {
 
-  private static int currentSize;
+  	private static int currentSize;
 	private Node<E> head;
 	private Node<E> tail;
 	
+	 /* Class creates Node objects for a Linked List.
+	 * Methods include those to store and retrieve successive 
+	 * objects along with generic type data.
+	 * @author Jonathan Verne
+	 *
+	 * @param <E>
+	 */
+	class Node<E>{
+		
+		E data;
+		Node<E> next;
+		
+		public Node(E obj){
+			data = obj;
+			next = null;
+		}
+		
+		public Node(E newData, Node<E> newValue){
+			next = newValue;
+			data = newData;
+		}
+		
+		public Object getData(){
+			return data;
+		}
+		
+		public Node<E> getNext(){
+			return next;
+		}
+		
+		public void setNext(Node<E> newValue){
+			next = newValue;
+		}
+	}
+
 }
