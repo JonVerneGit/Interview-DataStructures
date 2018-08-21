@@ -1,3 +1,7 @@
+package data_structures;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * This class is designed to provide a functioning implementation 
