@@ -39,6 +39,26 @@ public class LinkedList<E> implements ListI<E> {
 		currentSize++;
 	}
 	
+	/**
+	 * Adds an object to the end of the list.
+	 * @param obj the object to be added to the list.
+	 */
+	@Override
+	public void addLast(E obj) {
+		
+		if (head == null){
+			head = tail = new Node<E>(obj);
+			currentSize++;
+			return;
+		}
+		
+		Node<E> tmpNode = new Node<E>(obj);
+		tail.setNext(tmpNode);
+		tail = tmpNode;
+		currentSize++;
+	}
+	
+	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
 	 * objects along with generic type data.
