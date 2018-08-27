@@ -35,6 +35,76 @@ public class Hash<K, V> implements HashI<K, V> {
 		numElements = 0;
 	}
 	
+	 /**  
+	 * Adds the given key/value pair to the dictionary.  Returns 
+	 * false if the dictionary is full, or if the key is a duplicate. 
+	 * Returns true if addition succeeded. 
+	 *  
+	 * @param key the key to add
+	 * @param value the value associated with the key
+	 * @return true if the key/value are added to the hash.
+	 */
+	@Override
+	public boolean add(K key, V value) {
+		if(loadFactor() > maxLoadFactor)
+			resize(tableSize*2);
+		HashElement<K,V> he = new HashElement<>(key,value);
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		hash_array[hashVal].add(he);
+		numElements++;
+		return true;
+	}
+	
+	/**
+	 * Deletes the key/value pair identified by the key parameter. 
+	 * Returns true if the key/value pair was found and removed, 
+	 * otherwise returns false.
+	 *  
+	 * @param key
+	 * @return boolean
+	 */
+	@Override
+	public boolean remove(K key) {
+		
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		for(HashElement<K,V> he : hash_array[hashVal]){
+			if(((Comparable<K>)he.key).compareTo(key) == 0){
+				hash_array[hashVal].remove(he);
+				numElements--;
+				return true;
+			}	
+		}	
+			return false;	
+	}
+	
+	/**
+	 * Change the value associated with an existing key.
+	 * Returns true if the value was successfully changed,
+	 * otherwise returns false.
+	 * 
+	 * @param key The key to change
+	 * @param value
+	 * @return boolean
+	 */
+	@Override
+	public boolean changeValue(K key, V value) {
+		
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		for(HashElement<K,V> he : hash_array[hashVal]){
+			if(((Comparable<K>)he.key).compareTo(key) == 0){
+				he.value = value;
+				return true;
+			}
+		}	
+		return false;
+	}
+	
 	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
