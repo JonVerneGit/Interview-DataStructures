@@ -170,6 +170,23 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Test whether the hash has the entry associated with the key. 
+	 * True if the key is there and false otherwise.
+	 * 
+	 * @param key the key to look for
+	 * @return boolean
+	 */
+	@Override
+	public boolean contains(K key) {
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		if(hash_array[hashVal].isEmpty())
+			return false;
+		return true;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
