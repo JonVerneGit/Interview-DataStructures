@@ -280,4 +280,22 @@ public class Hash<K, V> implements HashI<K, V> {
 			}
 			position = 0;
 		}
+		
+		/**
+		 * returns true if there is another element in the table
+		 */
+		public boolean hasNext(){
+			return position < keys.length;
+		}
+		
+		/**
+		 * Iterates to the next element in the table
+		 */
+		public T next(){
+			if(!hasNext())
+				return null;
+			return keys[position++];
+		}
+	}
+
   }
