@@ -82,6 +82,30 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Change the value associated with an existing key.
+	 * Returns true if the value was successfully changed,
+	 * otherwise returns false.
+	 * 
+	 * @param key The key to change
+	 * @param value
+	 * @return boolean
+	 */
+	@Override
+	public boolean changeValue(K key, V value) {
+		
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		for(HashElement<K,V> he : hash_array[hashVal]){
+			if(((Comparable<K>)he.key).compareTo(key) == 0){
+				he.value = value;
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
