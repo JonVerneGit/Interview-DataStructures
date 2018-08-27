@@ -35,6 +35,70 @@ public class Hash<K, V> implements HashI<K, V> {
 		numElements = 0;
 	}
 	
+	/**
+	 * Returns the number of key/value pairs currently stored in the dictionary 
+	 * @return int number of elements
+	 */
+	@Override
+	public int size() {
+		
+		return numElements;
+	}
+
+	/**
+	 * Returns true if the dictionary is empty
+	 *  
+	 * @return whether the dictionary is empty
+	 */
+	@Override
+	public boolean isEmpty() {
+		if(numElements == 0)
+			return true;
+		return false;
+	}
+
+	/**
+	 * Makes the hash table empty
+	 */
+	@Override
+	public void makeEmpty() {
+		for(int i =0 ; i < tableSize; i++){
+			hash_array[i].makeEmpty();
+		}
+		numElements=0;
+	}
+
+	/**
+	 * returns the load factor for the hash table
+	 */
+	@Override
+	public double loadFactor() {
+		
+		return numElements/tableSize;
+	}
+
+	/**
+	 * returns the maximum load factor
+	 */
+	@Override
+	public double getMaxLoadFactor() {
+		
+		return maxLoadFactor;
+	}
+
+	/**
+	 * sets the max load factor for the table
+	 * 
+	 * @param new load factor
+	 */
+	@Override
+	public void setMaxLoadFActor(double loadfactor) {
+		
+		maxLoadFactor = loadfactor;
+		
+	}
+
+	
 	 /**  
 	 * Adds the given key/value pair to the dictionary.  Returns 
 	 * false if the dictionary is full, or if the key is a duplicate. 
