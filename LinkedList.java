@@ -186,6 +186,26 @@ public class LinkedList<E> implements ListI<E> {
 		return currentSize;
 	}
 	
+	/**
+	 * Test whether the list contains an object. This will use the object's
+	 * compareTo method to determine whether two objects are the same.
+	 * @param obj The object to look for in the list
+	 * @return true if the object is found in the list, false if it is not found
+	 */
+	@Override
+	public boolean contains(E obj) {
+		
+		Node<E> current = head;
+		
+		while(current != null){
+			if(((Comparable<E>) obj) .compareTo(current.data) == 0)
+				return true;
+			
+			current = current.next;
+		}
+		
+		return false;
+	}
 	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
