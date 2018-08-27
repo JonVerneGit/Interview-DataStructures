@@ -58,6 +58,62 @@ public class LinkedList<E> implements ListI<E> {
 		currentSize++;
 	}
 	
+	/**
+	 * Removes the first Object in the list and returns it.
+	 * Returns null if the list is empty.
+	 * @return the object removed.
+	 */
+	@Override
+	public E removeFirst() {
+		
+		E objectData; 	
+		
+		if(head == null){
+			return null;
+		}
+		
+		if(head == tail){
+			objectData = head.data;
+			head = tail = null;
+			currentSize--;
+			return objectData;
+		}
+		
+		objectData = head.data;
+		head = head.next;
+		currentSize--;
+		return objectData;
+	}
+
+	/**
+	 * Removes the last Object in the list and returns it.
+	 * Returns null if the list is empty.
+	 * @return the object removed.
+	 */
+	@Override
+	public E removeLast() {
+		
+		Node<E> current = head;
+		Node<E> previous = null;
+		
+		if(isEmpty()){
+			return null;
+		}
+		
+		if(head == tail){
+			return removeFirst();
+		}
+		
+		while(current != tail){
+			previous = current;
+			current = current.next;
+		}
+		
+		previous.next = null;
+		tail = previous;
+		currentSize--;
+		return current.data;
+	}
 	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
