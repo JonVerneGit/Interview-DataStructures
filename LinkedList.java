@@ -115,6 +115,78 @@ public class LinkedList<E> implements ListI<E> {
 		return current.data;
 	}
 	
+	/**
+	 * Returns the first Object in the list, but does not remove it.
+	 * Returns null if the list is empty.
+	 * @return the object at the beginning of the list.
+	 */
+	@Override
+	public E peekFirst() {
+		
+		while(head != null)
+			return head.data;
+		
+		return null;
+		
+	}
+	
+	/**
+	 * Returns the last Object in the list, but does not remove it. 
+	 * Returns null if the list is empty.
+	 * @return the object at the end of the list.
+	 */
+	@Override
+	public E peekLast() {
+		
+		while(tail != null)
+			return tail.data;
+		
+		return null;
+	}
+
+	/**
+	 * Return the list to an empty state.
+	 * This should generally be a constant time operation.
+	 */
+	@Override
+	public void makeEmpty() {
+		
+		head = tail = null;
+		currentSize = 0;
+		
+	}
+
+	/**
+	 * Test whether the list is empty.
+	 * @return true if the list is empty, otherwise false
+	 */
+	@Override
+	public boolean isEmpty() {
+		
+		return head == null;
+	}
+
+	/**
+	 * Test whether the list is full.
+	 * @return true if the list is full, otherwise false
+	 */
+	@Override
+	public boolean isFull() {
+		
+		return false;
+	}
+
+	/**
+	 * Returns the number of Objects currently in the list.
+	 * @return the number of Objects currently in the list.
+	 */
+	@Override
+	public int size() {
+		
+		return currentSize;
+	}
+	
+	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
 	 * objects along with generic type data.
