@@ -257,6 +257,14 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Iterates through the hash table
+	 */
+	@Override
+	public Iterator<K> iterator() {
+		return new IteratorHelper();
+	}
+	
+	/**
 	 * The Iterator Helper class provides methods to iterate through
 	 * the hash table and all of the chained Linked Lists.
 	 * @author Jonathan Verne
