@@ -58,6 +58,30 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Deletes the key/value pair identified by the key parameter. 
+	 * Returns true if the key/value pair was found and removed, 
+	 * otherwise returns false.
+	 *  
+	 * @param key
+	 * @return boolean
+	 */
+	@Override
+	public boolean remove(K key) {
+		
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		for(HashElement<K,V> he : hash_array[hashVal]){
+			if(((Comparable<K>)he.key).compareTo(key) == 0){
+				hash_array[hashVal].remove(he);
+				numElements--;
+				return true;
+			}	
+		}	
+			return false;	
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
