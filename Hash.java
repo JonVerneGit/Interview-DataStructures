@@ -35,6 +35,28 @@ public class Hash<K, V> implements HashI<K, V> {
 		numElements = 0;
 	}
 	
+	 /**  
+	 * Adds the given key/value pair to the dictionary.  Returns 
+	 * false if the dictionary is full, or if the key is a duplicate. 
+	 * Returns true if addition succeeded. 
+	 *  
+	 * @param key the key to add
+	 * @param value the value associated with the key
+	 * @return true if the key/value are added to the hash.
+	 */
+	@Override
+	public boolean add(K key, V value) {
+		if(loadFactor() > maxLoadFactor)
+			resize(tableSize*2);
+		HashElement<K,V> he = new HashElement<>(key,value);
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		hash_array[hashVal].add(he);
+		numElements++;
+		return true;
+	}
+	
 	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
