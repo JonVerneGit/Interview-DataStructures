@@ -206,6 +206,26 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Resizes the hash table
+	 */
+	@Override
+	public void resize(int newSize) {
+		
+		LinkedList<HashElement<K,V>> [] new_array = (LinkedList<HashElement<K,V>> []) new LinkedList[newSize];
+		
+		for(int i=0;i<newSize;i++)
+			new_array[i] = new LinkedList<HashElement<K,V>>();
+		for(K key : this){
+			V val = getValue(key);
+			HashElement<K,V> he = new HashElement<>(key,val);
+			int hashval = (key.hashCode() & 0x7fffffff) % newSize;
+			new_array[hashval].add(he);
+		}
+		hash_array = new_array;
+		tableSize = newSize;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
@@ -235,4 +255,75 @@ public class Hash<K, V> implements HashI<K, V> {
 			return (((Comparable<K>)o.key).compareTo(this.key));
 		}
 	}
+	
+	/**
+	 * Resizes the hash table
+	 */
+	@Override
+	public void resize(int newSize) {
+		
+		LinkedList<HashElement<K,V>> [] new_array = (LinkedList<HashElement<K,V>> []) new LinkedList[newSize];
+		
+		for(int i=0;i<newSize;i++)
+			new_array[i] = new LinkedList<HashElement<K,V>>();
+		for(K key : this){
+			V val = getValue(key);
+			HashElement<K,V> he = new HashElement<>(key,val);
+			int hashval = (key.hashCode() & 0x7fffffff) % newSize;
+			new_array[hashval].add(he);
+		}
+		hash_array = new_array;
+		tableSize = newSize;
+	}
+	
+	/**
+	 * Iterates through the hash table
+	 */
+	@Override
+	public Iterator<K> iterator() {
+		return new IteratorHelper();
+	}
+	
+	/**
+	 * The Iterator Helper class provides methods to iterate through
+	 * the hash table and all of the chained Linked Lists.
+	 * @author Jonathan Verne
+	 *
+	 * @param <T>
+	 */
+	class IteratorHelper<T> implements Iterator<T>{
+		T[] keys;
+		int position;
+		
+		/**
+		 * Constructor for the Iterator Helper
+		 */
+		public IteratorHelper(){
+			keys = (T[]) new Object[numElements];
+			int p = 0;
+			for(int i = 0; i < tableSize; i++){
+				LinkedList<HashElement<K,V>> list = hash_array[i];
+				for(HashElement<K,V> h : list)
+					keys[p++] = (T) h.key;
+			}
+			position = 0;
+		}
+		
+		/**
+		 * returns true if there is another element in the table
+		 */
+		public boolean hasNext(){
+			return position < keys.length;
+		}
+		
+		/**
+		 * Iterates to the next element in the table
+		 */
+		public T next(){
+			if(!hasNext())
+				return null;
+			return keys[position++];
+		}
+	}
+
   }
