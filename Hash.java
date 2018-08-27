@@ -22,6 +22,20 @@ public class Hash<K, V> implements HashI<K, V> {
 	double maxLoadFactor;
   
 	/**
+	 * Constructor for the hash table.
+	 * @param tableSize
+	 */
+	public Hash(int tableSize){
+		this.tableSize = tableSize;
+		hash_array = (LinkedList<HashElement<K,V>>[]) new LinkedList[tableSize];
+		for(int i = 0; i < tableSize; i++){
+			hash_array[i] = new LinkedList<HashElement<K,V>>();
+		}
+		maxLoadFactor = 0.75;
+		numElements = 0;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
