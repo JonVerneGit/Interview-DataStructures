@@ -187,6 +187,25 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Returns the value associated with the parameter key. 
+	 * Returns null if the key is not found or the dictionary is empty. 
+	 * 
+	 * @param key the key to find the value for
+	 * @return the value
+	 */
+	@Override
+	public V getValue(K key) {
+		int hashVal = key.hashCode();
+		hashVal = hashVal & 0x7fffffff;
+		hashVal = hashVal % tableSize;
+		for(HashElement<K,V> he : hash_array[hashVal]){
+			if(((Comparable<K>)he.key).compareTo(key) == 0)
+				return he.value;
+		}
+			return null;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
