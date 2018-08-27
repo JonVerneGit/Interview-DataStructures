@@ -255,4 +255,29 @@ public class Hash<K, V> implements HashI<K, V> {
 			return (((Comparable<K>)o.key).compareTo(this.key));
 		}
 	}
+	
+	/**
+	 * The Iterator Helper class provides methods to iterate through
+	 * the hash table and all of the chained Linked Lists.
+	 * @author Jonathan Verne
+	 *
+	 * @param <T>
+	 */
+	class IteratorHelper<T> implements Iterator<T>{
+		T[] keys;
+		int position;
+		
+		/**
+		 * Constructor for the Iterator Helper
+		 */
+		public IteratorHelper(){
+			keys = (T[]) new Object[numElements];
+			int p = 0;
+			for(int i = 0; i < tableSize; i++){
+				LinkedList<HashElement<K,V>> list = hash_array[i];
+				for(HashElement<K,V> h : list)
+					keys[p++] = (T) h.key;
+			}
+			position = 0;
+		}
   }
