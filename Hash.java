@@ -206,6 +206,26 @@ public class Hash<K, V> implements HashI<K, V> {
 	}
 	
 	/**
+	 * Resizes the hash table
+	 */
+	@Override
+	public void resize(int newSize) {
+		
+		LinkedList<HashElement<K,V>> [] new_array = (LinkedList<HashElement<K,V>> []) new LinkedList[newSize];
+		
+		for(int i=0;i<newSize;i++)
+			new_array[i] = new LinkedList<HashElement<K,V>>();
+		for(K key : this){
+			V val = getValue(key);
+			HashElement<K,V> he = new HashElement<>(key,val);
+			int hashval = (key.hashCode() & 0x7fffffff) % newSize;
+			new_array[hashval].add(he);
+		}
+		hash_array = new_array;
+		tableSize = newSize;
+	}
+	
+	/**
 	 * The Hash Element class provides methods to create a new Hash Element
 	 * to be added to the Hash Table. It also includes a CompareTo in order
 	 * to compare two hash elements.
