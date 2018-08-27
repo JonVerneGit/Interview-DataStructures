@@ -207,6 +207,49 @@ public class LinkedList<E> implements ListI<E> {
 		return false;
 	}
 	
+	/**
+	 * Returns an Iterator of the values in the list, presented in
+	 * the same order as the list.
+	 * @see java.lang.Iterable#iterator()
+	 */
+	@Override
+	public Iterator<E> iterator() {
+		
+		return new IteratorHelper();
+		
+	}
+	
+	
+	/**
+	 * This class provides methods to create an iterator
+	 * object for the LinkedList class method iterator()
+	 * @author Jonathan Verne
+	 *
+	 */
+	class IteratorHelper implements Iterator<E>{
+		
+		Node<E> index;
+		
+		public IteratorHelper(){
+			index = head;
+		}
+		
+		public boolean hasNext(){
+			return index != null;
+		}
+		
+		public E next (){
+			
+			if(!hasNext()){
+				throw new NoSuchElementException();
+			}
+			
+			E tmp = index.data;
+			index = index.next;
+			return tmp;
+		}
+	}
+	
 	 /* Class creates Node objects for a Linked List.
 	 * Methods include those to store and retrieve successive 
 	 * objects along with generic type data.
