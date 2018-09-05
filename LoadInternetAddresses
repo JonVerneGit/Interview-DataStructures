@@ -30,6 +30,19 @@ public class LoadInternetAddresses {
 			BufferedReader input = new BufferedReader(new FileReader(filename));
 			String line;
 			String[] values;
+			
+			while(input.ready()){
+				if(next.isEmpty()){
+				
+				}
+				if(!lineChecker)
+					return hash;
+				else {
+				
+				}
+			}
+			input.close();
+			return hash;
     }
     catch(Exception e){
 			throw new FileFormatException("Incorrect file format");
