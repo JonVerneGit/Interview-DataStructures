@@ -46,3 +46,11 @@ public class IPAddress {
 			return true;
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return ip;
+	}
+
+}
+
