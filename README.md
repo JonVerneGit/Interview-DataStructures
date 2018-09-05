@@ -1,2 +1,2 @@
 # Interview-DataStructures
-The repo contains code for a linked list, hash table and binary search tree. All of these have been created by myself in preperation for interviews.
+This branch contains the interface and full class for a Linked List. This Linked List will be used in conjunction with the Hash stucture for chained hashing, but it can function as a standalone Linked List.
