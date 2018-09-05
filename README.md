@@ -1,2 +1,3 @@
-# Interview-DataStructures
-The repo contains code for a linked list, hash table and binary search tree. All of these have been created by myself in preperation for interviews.
+# Interview-DataStructures-DNSResolver
+Contains four classes that utilize the chained hash we've created to store and search for internet addresses basesd off of a user-defined url string.
+
