@@ -26,7 +26,10 @@ public class LoadInternetAddresses {
   public HashI<URL, IPAddress> load_addresses(String filename) throws FileFormatException {
     
     try{
-    
+    			HashI<URL, IPAddress> hash = new Hash<URL, IPAddress>(4);
+			BufferedReader input = new BufferedReader(new FileReader(filename));
+			String line;
+			String[] values;
     }
     catch(Exception e){
 			throw new FileFormatException("Incorrect file format");
