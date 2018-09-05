@@ -32,13 +32,20 @@ public class LoadInternetAddresses {
 			String[] values;
 			
 			while(input.ready()){
+				boolean lineChecker = true;
+				String next = input.readLine().trim();
 				if(next.isEmpty()){
-				
+					lineChecker = false;
+					continue;
 				}
 				if(!lineChecker)
 					return hash;
 				else {
-				
+					line = next;
+					values = line.split("\t");
+					URL url = new URL(values[1]);
+					IPAddress ipaddress = new IPAddress(values[0]);
+					hash.add(url, ipaddress);
 				}
 			}
 			input.close();
