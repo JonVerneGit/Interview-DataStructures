@@ -39,3 +39,10 @@ public class IPAddress {
 	public int hashCode() {
 		return ip.hashCode();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if( (((Comparable<String>)this.ip).compareTo(obj.toString())) == 0)
+			return true;
+		return false;
+	}
