@@ -37,5 +37,18 @@ public class DNS_Resolver {
 			System.out.println("The IP address for " + request + " is " + url2ip.getValue(request));
 		else
 			System.out.println("Error 404: The URL " + request + " is unknown");
+	  
+	while (true){
+			System.out.print("URL > ");
+			@SuppressWarnings("resource")
+			String ask = new Scanner(System.in).nextLine();
+			if (ask.equals("quit"))
+				System.exit(0);
+			URL tofind = new URL(ask);
+			if (url2ip.contains(tofind))
+				System.out.println("The IP address for " + tofind + " is " + url2ip.getValue(tofind));
+			else
+				System.out.println("Error 404: The URL " + tofind + " is unknown");
+		}  
   }
 }
