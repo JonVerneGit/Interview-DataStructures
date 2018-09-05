@@ -21,15 +21,18 @@ public class DNS_Resolver {
     HashI<URL, IPAddress> url2ip = null;
   
       try {
-			// Change the two lines below to switch between the small and large
-			// data sets. Use the small data set for initial development and testing.
-			url2ip = loader.load_addresses("src/data/ips.txt");
-			//url2ip = loader.load_addresses("src/data/ips.txt");
-		} catch (FileFormatException e) {
-			System.err.println("There was a file format exception");
-			e.printStackTrace();
-		}
+		// Change the two lines below to switch between the small and large
+		// data sets. Use the small data set for initial development and testing.
+		url2ip = loader.load_addresses("src/data/ips.txt");
+		//url2ip = loader.load_addresses("src/data/ips.txt");
+	} catch (FileFormatException e) {
+		System.err.println("There was a file format exception");
+		e.printStackTrace();
+	}
     
+	System.out.print("Please enter a URL to find the IP address for. To exit, ");
+	System.out.println("type quit and press return\nFor example:\nURL > edwards.sdsu.edu");
+	URL request = new URL("edwards.sdsu.edu"); 
     
   }
 }
