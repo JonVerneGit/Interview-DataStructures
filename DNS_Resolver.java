@@ -33,6 +33,9 @@ public class DNS_Resolver {
 	System.out.print("Please enter a URL to find the IP address for. To exit, ");
 	System.out.println("type quit and press return\nFor example:\nURL > edwards.sdsu.edu");
 	URL request = new URL("edwards.sdsu.edu"); 
-    
+    	if (url2ip.contains(request))
+			System.out.println("The IP address for " + request + " is " + url2ip.getValue(request));
+		else
+			System.out.println("Error 404: The URL " + request + " is unknown");
   }
 }
