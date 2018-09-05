@@ -24,6 +24,12 @@ import exceptions.FileFormatException;
  */
 public class LoadInternetAddresses {
   public HashI<URL, IPAddress> load_addresses(String filename) throws FileFormatException {
-  
+    
+    try{
+    
+    }
+    catch(Exception e){
+			throw new FileFormatException("Incorrect file format");
+		}
   }
 }
